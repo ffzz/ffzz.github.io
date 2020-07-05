@@ -32,8 +32,8 @@ share:
 urls:
     - text: 关于我/About Me
       url: /about/
-    - text: 分类/Categories
-      url: “https://cfangzheng.com/%E6%9D%82%E8%B0%88/2020/07/05/%E6%96%87%E7%AB%A0%E5%90%88%E9%9B%86Categories.html”
+    - #text: 分类/Categories
+      #url: “https://cfangzheng.com/%E6%9D%82%E8%B0%88/2020/07/05/%E6%96%87%E7%AB%A0%E5%90%88%E9%9B%86Categories.html”
    
 
 url: "https://cfangzheng.com"
@@ -45,6 +45,7 @@ markdown: kramdown
 gems:
   - jekyll-paginate
   - jekyll-gist
+  - kramdown
 
 compress_html:
   clippings: all
