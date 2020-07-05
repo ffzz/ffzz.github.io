@@ -9,7 +9,7 @@ google_analytics: UA-XXXXXXXX-Y
 enableTags: true
 tagarray: []
 
-collections:
+collections: true
   project:
     output: false
     permalink: /project/:path/
@@ -31,8 +31,8 @@ share:
 urls:
     - text: 关于我/About Me
       url: /about/
-    - text: 文章/Posts
-      url: /Home/
+    - text: 分类/categories
+      url: "#"
    
 
 url: "https://cfangzheng.com"
