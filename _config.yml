@@ -1,0 +1,53 @@
+title: Ben的博客
+description: 我的自留地
+author: Ben Chen
+github: https://cfangzheng.com
+about: 曾经武汉，现在澳洲。目前正在学习英语、跨境电商和编程。也会谈读书、电影和各种想法。
+disqus_shortname: Ben
+google_analytics: UA-XXXXXXXX-Y
+
+enableTags: true
+tagarray: []
+
+collections:
+  project:
+    output: false
+    permalink: /project/:path/
+
+social:
+    - icon: fa-facebook
+      link: "#"
+    - icon: fa-twitter
+      link: "https://twitter.com/founder90"
+    - icon: fa-linkedin
+      link: "#"
+    - icon: fa-github
+      link: "https://github.com/ffzz"
+
+share:
+  twitter_username: github.io
+  fb_appid: 1749788565247320
+
+urls:
+    - text: 关于我/About Me
+      url: /about/
+    - text: 文章/Posts
+      url: /Home/
+   
+
+url: "https://cfangzheng.com"
+baseurl: "https://cfangzheng.com"
+paginate: 20
+per_page: 20
+paginate_path: "/page/:num/"
+markdown: kramdown
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
+  ignore:
+    envs: ['development']
