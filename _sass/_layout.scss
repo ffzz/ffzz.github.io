@@ -209,7 +209,7 @@
     line-height: 1;
 
     @include media-query($on-laptop) {
-        font-size: 36px;
+        font-size: 28px;
     }
 }
 
@@ -217,10 +217,10 @@
     margin-bottom: $spacing-unit;
 
     h2 {
-        font-size: 28px;
+        font-size: 26px;
 
         @include media-query($on-laptop) {
-            font-size: 24px;
+            font-size: 20px;
         }
     }
 
