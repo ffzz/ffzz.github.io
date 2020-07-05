@@ -11,7 +11,7 @@ tagarray: []
 
 collections:
   project:
-    output: true
+    output: false
     permalink: /project/:path/
 
 social:
@@ -36,7 +36,7 @@ urls:
    
 
 url: "https://cfangzheng.com"
-baseurl: ""
+baseurl: "https://cfangzheng.com"
 paginate: 20
 per_page: 20
 paginate_path: "/page/:num/"
