@@ -4,6 +4,6 @@ title: About
 permalink: /about/
 ---
 
-I'm Programmer for Python & Django. I've made quite a few web apps, especially on Django. Now, I am doing more on backend.
+曾经武汉，现在澳洲。目前正在学习英语、跨境电商和编程。也会谈读书、电影和各种想法。
 
-email: agus[at]python.web.id
+email: cfangzheng@gmail.com
