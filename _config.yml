@@ -1,8 +1,8 @@
-title: Stack Problems
-description: My Personal Stack Problems
-author: Agus Makmun
+title: 澳洲Ben
+description: 我的自留地
+author: Ben Chen
 github: https://github.com/agusmakmun
-about: I'm Programmer for Python & Django. I've made quite a few web apps, especially on Django.
+about: 曾经武汉，现在澳洲。目前正在学习英语、跨境电商和编程。也会谈读书、电影和各种想法。
 disqus_shortname: stackproblems
 google_analytics: UA-XXXXXXXX-Y
 
@@ -31,9 +31,9 @@ share:
   fb_appid: 1749788565247320
 
 urls:
-    - text: About Me
+    - text: 关于我/About Me
       url: /about/
-    - text: My Projects
+    - text: 文章/Posts
       url: /projects/
     - text: XML Feed
       url: /feed.xml
