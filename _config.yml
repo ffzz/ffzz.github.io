@@ -9,7 +9,7 @@ google_analytics: UA-XXXXXXXX-Y
 enableTags: true
 tagarray: []
 
-collections: true
+collections: 
   project:
     output: false
     permalink: /project/:path/
