@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import qs from "qs";
 import { cleanObject, useDebounce, useFetch } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
-const qs = require("qs");
+
+interface param {
+  name: string,
+  personId: string
+}
 
 export const ProjectListScreen = () => {
-  const initialState = {
+  const initialState:param = {
     name: "",
     personId: "",
   };
@@ -26,7 +31,7 @@ export const ProjectListScreen = () => {
 
   const usersApi = `${apiUrl}/users`;
   // To fetch users data
-  useFetch(usersApi, setUsers, [apiUrl]);
+  useFetch(usersApi, setUsers, [usersApi]);
 
   return (
     <div>

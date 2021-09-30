@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { TupleType } from "typescript";
 
-const isFalse = (value) => {
+const isFalse = (value: unknown): boolean => {
   //if value equals zero return false(!value ==== true), or return true
   return value === 0 ? false : !value;
 };
@@ -13,11 +14,13 @@ const isFalse = (value) => {
  * @author "Benchen"
  *
  */
-const cleanObject = (object) => {
-  const result = { ...object };
+const cleanObject: (object: object) => object = (object) => {
+  const result: object = { ...object };
   Object.keys(result).forEach((key) => {
+    //@ts-ignore
     const value = result[key];
     if (isFalse(value)) {
+      //@ts-ignore
       delete result[key];
     }
   });
@@ -30,7 +33,11 @@ const cleanObject = (object) => {
  * @param {function} callback a function to accept the json-data-form parameter
  * @param {Array} dependence
  */
-const useFetch = (url, callback, dependence = []) => {
+const useFetch = (
+  url: string,
+  callback: (object: any) => void,
+  dependence: (object | string | number)[]
+) => {
   if (typeof callback === "function") {
     useEffect(() => {
       fetch(url).then(async (response) => {
@@ -44,7 +51,7 @@ const useFetch = (url, callback, dependence = []) => {
   }
 };
 
-const useDebounce = (value = null, delay = 500) => {
+const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     const timer = setTimeout(() => {
