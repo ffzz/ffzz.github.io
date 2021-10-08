@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import qs from "qs";
-import { cleanObject, useDebounce, useFetch } from "utils";
+import React, { useState, useEffect } from "react";
+import { cleanObject, useDebounce } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
+import { useHttp } from "utils/http";
 
 interface param {
   name: string,
@@ -19,19 +19,18 @@ export const ProjectListScreen = () => {
   const [param, setParam] = useState(initialState);
   const [users, setUsers] = useState([]);
 
-  const apiUrl = process.env.REACT_APP_BASE_URL;
-
   const debouncedParam = useDebounce(param, 500);
 
-  const projectsApi = `${apiUrl}/projects?${qs.stringify(
-    cleanObject(debouncedParam)
-  )}`;
-  // To fetch list data
-  useFetch(projectsApi, setList, [debouncedParam, projectsApi]);
+  const clientHttp = useHttp()
+  useEffect(() => {
+    clientHttp('projects',{data:cleanObject(debouncedParam)}).then(setList)
+  },[debouncedParam])
+  // To fetch list da
 
-  const usersApi = `${apiUrl}/users`;
   // To fetch users data
-  useFetch(usersApi, setUsers, [usersApi]);
+  useEffect(()=>{
+    clientHttp('users').then(setUsers)
+  }, [])
 
   return (
     <div>
