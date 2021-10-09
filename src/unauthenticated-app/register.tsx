@@ -1,5 +1,6 @@
 import { useAuth } from 'context/auth-context';
 import React from 'react'
+import {Button, Form, Input} from 'antd'
 
 export default function RegisterScreen() {
 
@@ -14,17 +15,15 @@ export default function RegisterScreen() {
 
     
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onFinish={handleSubmit}>
             
-            <div>
-                <label htmlFor="username">username</label>
-                <input type="text" id={'username'} />
-            </div>
-            <div>
-                <label htmlFor="password">password</label>
-                <input type="password" id={'password'} />
-            </div>
-            <button type={'submit'}>Register</button>
-        </form>
+            <Form.Item name={'username'}>
+                <Input type="text" id={'username'} />
+            </Form.Item>
+            <Form.Item name={'password'}>
+                <Input type="password" id={'password'} />
+            </Form.Item>
+            <Button htmlType={'submit'} type={'primary'}>Register</Button>
+        </Form>
     )
 }
