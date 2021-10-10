@@ -15,7 +15,7 @@ export default function LoginScreen() {
 
     
     return (
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={handleSubmit} autoComplete="off">
             
             <Form.Item name={'username'}>
                 <Input placeholder={'username'} type="text" id={'username'} />
