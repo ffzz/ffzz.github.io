@@ -12,10 +12,19 @@ const defaultInitialState: State<null> = {
   error: null,
 };
 
-export const useAsyncHttp = <D>(initialState?: State<D>) => {
+const defaultConfig = {
+  throwError: false,
+};
+
+export const useAsyncHttp = <D>(
+  initialState?: State<D>,
+  initialConfig?: typeof defaultConfig
+) => {
   const [state, setState] = useState<State<D>>({
     ...defaultInitialState,
+    ...defaultConfig,
     ...initialState,
+    ...initialConfig,
   });
 
   const setData = (data: D) =>
@@ -46,7 +55,7 @@ export const useAsyncHttp = <D>(initialState?: State<D>) => {
       })
       .catch((error) => {
         setError(error);
-        return error;
+        return Promise.reject(error);
       });
   };
 

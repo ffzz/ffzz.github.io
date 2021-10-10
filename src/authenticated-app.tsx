@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
 import { Dropdown, Menu } from "antd";
-import MenuItem from "antd/lib/menu/MenuItem";
 import { Row } from "components/lib";
 import { useAuth } from "context/auth-context";
-import { userInfo } from "os";
 import { ProjectListScreen } from "screens/project-list";
 import { ReactComponent as Logo } from "./assets/software-logo.svg";
 

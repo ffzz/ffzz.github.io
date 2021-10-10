@@ -9,10 +9,10 @@ function App() {
 
   return (
     <div className="App">
-       {/* {
+       {
          user?  <AuthenticatedApp /> : <UnauthenticatedApp />
-       } */}
-       <AuthenticatedApp />
+       }
+       {/* <AuthenticatedApp /> */}
     </div>
   );
 }

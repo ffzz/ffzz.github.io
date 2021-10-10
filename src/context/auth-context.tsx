@@ -5,7 +5,7 @@ import { User } from 'screens/project-list/search-panel';
 import { http } from 'utils/http';
 import { useFetch } from 'utils';
 
-interface AuthContext {
+interface Auth {
     user: User | null;
     register: (form: LoginUser) => Promise<void>;
     login: (form: LoginUser) => Promise<void>;
@@ -22,10 +22,7 @@ const bootstrapUser = async () => {
     return user
 }
 
-
-
-
-const AuthContext = React.createContext<AuthContext | undefined>(undefined);
+const AuthContext = React.createContext<Auth | undefined>(undefined);
 
  const AuthProvider = ({ children }: { children: ReactNode }) => {
     

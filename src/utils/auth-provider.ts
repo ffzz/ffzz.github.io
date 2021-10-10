@@ -25,9 +25,9 @@ const login = (data: LoginUser) => {
     },
     body: JSON.stringify(data),
   }).then(async (response: Response) => {
+    let data = null;
     if (response.ok) {
-      const data = await response.json();
-      console.log(data.user);
+      data = await response.json();
       return handleUserResponse(data.user);
     } else {
       return Promise.reject(data);
@@ -43,10 +43,12 @@ const register = (user: LoginUser) => {
     },
     body: JSON.stringify(user),
   }).then(async (response: Response) => {
+    let result = null;
     if (response.ok) {
-      return handleUserResponse(await response.json());
+      result = await response.json();
+      return handleUserResponse(result);
     } else {
-      return Promise.reject(user);
+      return Promise.reject(result);
     }
   });
 };
