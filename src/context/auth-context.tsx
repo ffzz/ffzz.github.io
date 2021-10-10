@@ -4,6 +4,8 @@ import * as auth from 'utils/auth-provider'
 import { User } from 'screens/project-list/search-panel';
 import { http } from 'utils/http';
 import { useFetch } from 'utils';
+import { useAsyncHttp } from 'utils/useAsyncHttp';
+import { FullPageError, FullPageLoading } from 'components/full-page-loading';
 
 interface Auth {
     user: User | null;
@@ -25,16 +27,23 @@ const bootstrapUser = async () => {
 const AuthContext = React.createContext<Auth | undefined>(undefined);
 
  const AuthProvider = ({ children }: { children: ReactNode }) => {
-    
-    const [user, setUser] = useState<User | null>(null)
+    const { fetchData, data:user, error, isLoading, isPending, isError, isSuccess, setData: setUser } = useAsyncHttp<User | null>()
 
     const login = (form: LoginUser) => auth.login(form).then(user => setUser({...user}))
     const register = (form: LoginUser) => auth.register(form).then(user => setUser(user))
     const logout = () => auth.logout().then(() => setUser(null))
 
     useFetch(() => {
-        bootstrapUser().then(setUser)
+        fetchData(bootstrapUser())
     })
+
+    if(isPending || isLoading){
+        return <FullPageLoading />
+    }
+
+    if (isError) {
+        return <FullPageError error={error}/>    
+    }
 
     return <AuthContext.Provider children={children} value={{ user, login, register, logout }} />
 }

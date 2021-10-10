@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import { useDebounce } from "utils";
+import { useDebounce, useDocumentTitle } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import styled from "@emotion/styled";
@@ -17,6 +17,8 @@ export const ProjectListScreen = () => {
     name: "",
     personId: "",
   };
+
+  useDocumentTitle('Kanban task manage system')
 
   const [param, setParam] = useState(initialState);
   // const [list, setList] = useState([]);
