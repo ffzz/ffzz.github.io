@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const isFalse = (value: unknown): boolean => {
   //if value equals zero return false(!value ==== true), or return true
@@ -57,7 +57,8 @@ export const useDocumentTitle = (
   title: string,
   keepTitleOnUnmount: boolean = true
 ) => {
-  const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
+
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -68,7 +69,7 @@ export const useDocumentTitle = (
         document.title = oldTitle;
       }
     };
-  }, []);
+  }, [oldTitle, keepTitleOnUnmount]);
 };
 
 export { isFalse, cleanObject, useDebounce, useFetch };
