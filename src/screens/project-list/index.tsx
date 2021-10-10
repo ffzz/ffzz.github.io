@@ -1,47 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { cleanObject, useDebounce } from "utils";
+import  { useState } from "react";
+import { useDebounce } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
-import { useHttp } from "utils/http";
 import styled from "@emotion/styled";
+import { Typography } from "antd";
+import useProjects from "utils/project";
+import { useUsers } from "utils/users";
 
 interface param {
-  name: string,
-  personId: string
+  name: string;
+  personId: string;
 }
 
 export const ProjectListScreen = () => {
-  const initialState:param = {
+  const initialState: param = {
     name: "",
     personId: "",
   };
 
-  const [list, setList] = useState([]);
   const [param, setParam] = useState(initialState);
-  const [users, setUsers] = useState([]);
+  // const [list, setList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState<null | Error>(null);
 
-  const debouncedParam = useDebounce(param, 500);
+  const debouncedParam = useDebounce(param, 200)
 
-  const clientHttp = useHttp()
-  useEffect(() => {
-    clientHttp('projects',{data:cleanObject(debouncedParam)}).then(setList)
-  },[debouncedParam])
   // To fetch list da
+  const {isLoading, error, data: list} = useProjects(debouncedParam)
 
   // To fetch users data
-  useEffect(()=>{
-    clientHttp('users').then(setUsers)
-  }, [])
+  const {data: users} = useUsers()
 
   return (
     <Container>
       <h3>Projects List</h3>
-      <SearchPanel users={users} param={param} setParam={setParam} />
-      <List users={users} list={list} />
+      <SearchPanel users={users || []} param={param} setParam={setParam} />
+      {error ? (
+        <Typography.Text type='warning'>{error.message}</Typography.Text>
+      ) : (
+        ""
+      )}
+      <List users={users || []} dataSource={list || [] } loading={isLoading} />
     </Container>
   );
 };
 
 const Container = styled.div`
   padding: 2rem 3.2rem;
-`
+`;

@@ -5,6 +5,10 @@ const isFalse = (value: unknown): boolean => {
   return value === 0 ? false : !value;
 };
 
+const isVoid = (value: unknown) => {
+  return value === undefined || value === null || value === "";
+};
+
 /**
  *
  * @param {object} object
@@ -13,13 +17,11 @@ const isFalse = (value: unknown): boolean => {
  * @author "Benchen"
  *
  */
-const cleanObject: (object: object) => object = (object) => {
-  const result: object = { ...object };
+const cleanObject = (object: { [key: string]: unknown }) => {
+  const result = { ...object };
   Object.keys(result).forEach((key) => {
-    //@ts-ignore
     const value = result[key];
-    if (isFalse(value)) {
-      //@ts-ignore
+    if (isVoid(value)) {
       delete result[key];
     }
   });
