@@ -25,7 +25,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
   };
 
   return (
-    <Form layout="inline" style={{marginBottom:'2rem'}}>
+    <Form layout="inline" style={{ marginBottom: "2rem" }}>
       <Form.Item>
         <Input
           type="text"
@@ -41,7 +41,7 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
         >
           <Select.Option value={""}>负责人</Select.Option>
           {users.map((user) => (
-            <Select.Option value={user.id} key={user.id}>
+            <Select.Option value={String(user.id)} key={user.id}>
               {user.name}
             </Select.Option>
           ))}

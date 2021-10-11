@@ -1,4 +1,4 @@
-import  { useState } from "react";
+
 import { useDebounce, useDocumentTitle } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
@@ -6,26 +6,20 @@ import styled from "@emotion/styled";
 import { Typography } from "antd";
 import useProjects from "utils/project";
 import { useUsers } from "utils/users";
+import { useUrlQueryParam } from "utils/url";
 
-interface param {
-  name: string;
-  personId: string;
-}
+
 
 export const ProjectListScreen = () => {
-  const initialState: param = {
-    name: "",
-    personId: "",
-  };
 
-  useDocumentTitle('Kanban task manage system')
-
-  const [param, setParam] = useState(initialState);
+  useDocumentTitle('Project list', false)
+  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
+  const debouncedParam = useDebounce(param, 200)
+  //console.log("object");
   // const [list, setList] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState<null | Error>(null);
 
-  const debouncedParam = useDebounce(param, 200)
 
   // To fetch list da
   const {isLoading, error, data: list} = useProjects(debouncedParam)
