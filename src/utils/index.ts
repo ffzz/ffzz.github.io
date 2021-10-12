@@ -37,7 +37,7 @@ const cleanObject = (object: { [key: string]: unknown }) => {
 const useFetch = (callback: () => void) => {
   useEffect(() => {
     callback();
-  }, [callback]);
+  }, []);
 };
 
 const useDebounce = <V>(value: V, delay?: number) => {

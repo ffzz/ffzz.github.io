@@ -1,33 +1,48 @@
 import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
-import { Row } from "./lib";
+import { NoPaddingButton, Row } from "./lib";
 import { ReactComponent as Logo } from "../assets/software-logo.svg";
 import { useAuth } from "context/auth-context";
 import { resetRoute } from "utils";
+import { ProjectPopover } from "./project-popover";
 
-const PageHeader = () => {
+const PageHeader = (props: {
+  createProjectButton: React.ReactElement
+}) => {
   const { logout, user } = useAuth();
 
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <Button type='link' onClick={() => resetRoute()}>
+        <NoPaddingButton
+          type="link"
+          onClick={() => resetRoute()}
+        >
           <Logo width="18rem" color="rgb(38,132,255)" />
-        </Button>
-        <h3>项目</h3>
-        <h3>用户</h3>
+        </NoPaddingButton>
+        <ProjectPopover {...props} />
+        <span>users</span>
       </HeaderLeft>
       <HeaderRight>
         <Dropdown
           overlay={
             <Menu>
               <Menu.Item key="logout">
-                <Button type='link' onClick={logout}>Log Out</Button>
+                <Button type="link" onClick={logout}>
+                  Log Out
+                </Button>
               </Menu.Item>
             </Menu>
           }
         >
-          <Button type='text' color='primary' onClick={(e) => e.preventDefault()}> Hi, {user?.name}</Button>
+          <Button
+            type="text"
+            color="primary"
+            onClick={(e) => e.preventDefault()}
+          >
+            {" "}
+            Hi, {user?.name}
+          </Button>
         </Dropdown>
       </HeaderRight>
     </Header>

@@ -47,14 +47,14 @@
       "personId": 2,
       "organization": "团购组",
       "createdAt": 1604989757139,
-      "pin": false
+      "pin": true
     },
     {
       "id": 3,
       "name": "物料管理系统",
       "personId": 2,
       "organization": "物料组",
-      "pin": false,
+      "pin": true,
       "createdAt": 1546300800000
     },
     {

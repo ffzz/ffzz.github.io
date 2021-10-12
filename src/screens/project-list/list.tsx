@@ -1,4 +1,5 @@
-import { Table, TableProps } from "antd";
+import { Dropdown, Menu, Table, TableProps } from "antd";
+import { NoPaddingButton } from "components/lib";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
@@ -16,19 +17,18 @@ export interface Project {
 
 interface ListProps extends TableProps<Project> {
   users: User[];
-  refresh?: ()=>void
+  refresh?: () => void;
+  createProjectButton: React.ReactElement
 }
 
 export const List = ({ users, ...props }: ListProps) => {
-  
   const { mutate } = useEditProject();
   // const editPinStatus = (id:number, pin: boolean) => mutate({id, pin})
   // currying 科里化写法 与上面是一样的性质
   const editPinStatus = (id: number) => (pin: boolean) => {
-    mutate({ id, pin }).then(props.refresh)
+    mutate({ id, pin }).then(props.refresh);
     //window.location.reload()
   };
-  
 
   return (
     <Table
@@ -82,6 +82,25 @@ export const List = ({ users, ...props }: ListProps) => {
                   ? dayjs(project.createdAt).format("MMMM D, YYYY")
                   : ""}
               </span>
+            );
+          },
+        },
+        {
+          title:'Edit',
+          key:'edit',
+          render(value, project) {
+            return (
+              <Dropdown
+                overlay={
+                  <Menu>
+                    <Menu.Item key="edit">
+                      {props.createProjectButton}
+                    </Menu.Item>
+                  </Menu>
+                }
+              >
+                <NoPaddingButton type='link'>...</NoPaddingButton>
+              </Dropdown>
             );
           },
         },
