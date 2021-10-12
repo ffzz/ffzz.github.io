@@ -30,6 +30,8 @@ export const useAsyncHttp = <D>(
 
   const [refetch, setRefetch] = useState(() => () => {});
 
+  const mountedRef = useMountedRef();
+
   const setData = (data: D) =>
     setState({
       data,
@@ -66,8 +68,6 @@ export const useAsyncHttp = <D>(
         fetchData(fetchConfig?.refetch(), fetchConfig);
       }
     });
-
-    const mountedRef = useMountedRef();
 
     return promise
       .then((data) => {
