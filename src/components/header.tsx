@@ -3,7 +3,6 @@ import { Button, Dropdown, Menu } from "antd";
 import { Row } from "./lib";
 import { ReactComponent as Logo } from "../assets/software-logo.svg";
 import { useAuth } from "context/auth-context";
-import { Navigate, Router, Routes } from "react-router";
 import { resetRoute } from "utils";
 
 const PageHeader = () => {
@@ -23,12 +22,12 @@ const PageHeader = () => {
           overlay={
             <Menu>
               <Menu.Item key="logout">
-                <a onClick={logout}>Log Out</a>
+                <Button type='link' onClick={logout}>Log Out</Button>
               </Menu.Item>
             </Menu>
           }
         >
-          <a onClick={(e) => e.preventDefault()}> Hi, {user?.name}</a>
+          <Button type='text' color='primary' onClick={(e) => e.preventDefault()}> Hi, {user?.name}</Button>
         </Dropdown>
       </HeaderRight>
     </Header>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { isArrowFunction } from "typescript";
 
 const isFalse = (value: unknown): boolean => {
   //if value equals zero return false(!value ==== true), or return true
@@ -77,3 +78,16 @@ export const resetRoute = () => {
 };
 
 export { isFalse, cleanObject, useDebounce, useFetch };
+
+export const useMountedRef = () => {
+  const mountedRef = useRef(false);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  });
+
+  return mountedRef;
+};

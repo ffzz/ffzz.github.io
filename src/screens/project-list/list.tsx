@@ -1,12 +1,8 @@
-import { render } from "@testing-library/react";
 import { Table, TableProps } from "antd";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useHttp } from "utils/http";
-import { useEditProject, useProjects } from "utils/project";
-import { useAsyncHttp } from "utils/useAsyncHttp";
+import { useEditProject } from "utils/project";
 import { User } from "./search-panel";
 
 export interface Project {

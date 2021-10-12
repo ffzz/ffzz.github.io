@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import PageHeader from "components/header";
 import { ProjectListScreen } from "screens/project-list";
 import { ProjectScreen } from "screens/project";
-import { Navigate, Route, Router, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 
 const AuthenticatedApp = () => {

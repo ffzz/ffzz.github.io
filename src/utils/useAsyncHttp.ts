@@ -1,3 +1,4 @@
+import { useMountedRef } from "./index";
 import { useState } from "react";
 
 interface State<D> {
@@ -43,6 +44,13 @@ export const useAsyncHttp = <D>(
       data: null,
     });
 
+  /**
+   *
+   * @param promise fetch data function
+   * @param fetchConfig refetch data config if refetch
+   * @returns fetchData, refetch, isLoading, isError...
+   * @description async fetch data with three status: pending, loading, error
+   */
   const fetchData = (
     promise: Promise<D>,
     fetchConfig?: { refetch: () => Promise<D> }
@@ -59,9 +67,13 @@ export const useAsyncHttp = <D>(
       }
     });
 
+    const mountedRef = useMountedRef();
+
     return promise
       .then((data) => {
-        setData(data);
+        if (mountedRef.current) {
+          setData(data);
+        }
         return data;
       })
       .catch((error) => {
