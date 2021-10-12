@@ -1,4 +1,4 @@
-import { Input, Select, Form } from "antd";
+import { Input, Form } from "antd";
 import { UserSelect } from "components/user-select";
 import React from "react";
 import { Project } from "./list";
@@ -18,7 +18,7 @@ interface SearchPanelProps {
   setParam: (param: SearchPanelProps["param"]) => void;
 }
 
-export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
+export const SearchPanel = ({ param, setParam }: SearchPanelProps) => {
   const handleChange: (e: React.FormEvent<HTMLInputElement>) => void = (e) => {
     setParam({ ...param, name: e.currentTarget.value });
   };

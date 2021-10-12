@@ -4,9 +4,8 @@ import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import styled from "@emotion/styled";
 import { Typography } from "antd";
-import useProjects from "utils/project";
+import {useProjects} from "utils/project";
 import { useUsers } from "utils/users";
-import { useUrlQueryParam } from "utils/url";
 import { useProjectsSearchParams } from "./util";
 
 
@@ -17,13 +16,10 @@ export const ProjectListScreen = () => {
 
   const [param, setParam] = useProjectsSearchParams()
   const debouncedParam = useDebounce(param, 200);
-  //console.log("object");
-  // const [list, setList] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState<null | Error>(null);
+  
 
   // To fetch list da
-  const {isLoading, error, data: list} = useProjects(debouncedParam)
+  const {isLoading, error, data: list, refetch} = useProjects(debouncedParam)
   // To fetch users data
   const {data: users} = useUsers()
 
@@ -40,7 +36,7 @@ export const ProjectListScreen = () => {
       ) : (
         ""
       )}
-      <List users={users || []} dataSource={list || []} loading={isLoading} />
+      <List refresh={refetch} users={users || []} dataSource={list || []} loading={isLoading} />
     </Container>
   );
 };

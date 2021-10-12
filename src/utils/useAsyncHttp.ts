@@ -27,6 +27,8 @@ export const useAsyncHttp = <D>(
     ...initialConfig,
   });
 
+  const [refetch, setRefetch] = useState(() => () => {});
+
   const setData = (data: D) =>
     setState({
       data,
@@ -41,12 +43,21 @@ export const useAsyncHttp = <D>(
       data: null,
     });
 
-  const fetchData = (promise: Promise<D>) => {
+  const fetchData = (
+    promise: Promise<D>,
+    fetchConfig?: { refetch: () => Promise<D> }
+  ) => {
     if (!promise || !promise.then) {
       throw new Error("Please pass Promise type data!");
     }
 
     setState({ ...state, status: "loading" });
+
+    setRefetch(() => () => {
+      if (fetchConfig?.refetch) {
+        fetchData(fetchConfig?.refetch(), fetchConfig);
+      }
+    });
 
     return promise
       .then((data) => {
@@ -65,6 +76,7 @@ export const useAsyncHttp = <D>(
     isError: state.status === "error",
     isSuccess: state.status === "success",
     fetchData,
+    refetch,
     setData,
     setError,
     ...state,

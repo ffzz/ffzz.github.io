@@ -16,14 +16,15 @@
     "antd": "^4.16.13",
     "craco-less": "^1.20.0",
     "dayjs": "^1.10.7",
+    "eslint": "^7.11.0",
     "history": "^5.0.1",
     "jira-dev-tool": "^1.6.59",
     "qs": "^6.9.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.26.0",
-    "react-router": "^6.0.0-beta.0",
-    "react-router-dom": "^6.0.0-beta.0",
+    "react-router": "^6.0.0-beta.1",
+    "react-router-dom": "^6.0.0-beta.1",
     "react-scripts": "4.0.3",
     "typescript": "^4.4.3",
     "web-vitals": "^1.1.2"
@@ -33,7 +34,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "json-server": "json-server __json_server_mock__/db.json --watch --port 3001"
   },
   "eslintConfig": {
     "extends": [
@@ -59,7 +61,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@types/qs": "^6.9.7",
     "@welldone-software/why-did-you-render": "^6.2.1",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^6.15.0",
     "husky": "^7.0.2",
     "json-server": "^0.16.3",
     "lint-staged": "^11.1.2",
