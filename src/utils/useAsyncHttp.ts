@@ -1,5 +1,5 @@
 import { useMountedRef } from "./index";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 interface State<D> {
   error: Error | null;
@@ -32,19 +32,23 @@ export const useAsyncHttp = <D>(
 
   const mountedRef = useMountedRef();
 
-  const setData = (data: D) =>
+  const setData = useCallback((data: D) => {
     setState({
       data,
       status: "success",
       error: null,
     });
+  }, []);
 
-  const setError = (error: Error) =>
-    setState({
-      error,
-      status: "error",
-      data: null,
-    });
+  const setError = useCallback(
+    (error: Error) =>
+      setState({
+        error,
+        status: "error",
+        data: null,
+      }),
+    []
+  );
 
   /**
    *
@@ -53,34 +57,34 @@ export const useAsyncHttp = <D>(
    * @returns fetchData, refetch, isLoading, isError...
    * @description async fetch data with three status: pending, loading, error
    */
-  const fetchData = (
-    promise: Promise<D>,
-    fetchConfig?: { refetch: () => Promise<D> }
-  ) => {
-    if (!promise || !promise.then) {
-      throw new Error("Please pass Promise type data!");
-    }
-
-    setState({ ...state, status: "loading" });
-
-    setRefetch(() => () => {
-      if (fetchConfig?.refetch) {
-        fetchData(fetchConfig?.refetch(), fetchConfig);
+  const fetchData = useCallback(
+    (promise: Promise<D>, fetchConfig?: { refetch: () => Promise<D> }) => {
+      if (!promise || !promise.then) {
+        throw new Error("Please pass Promise type data!");
       }
-    });
 
-    return promise
-      .then((data) => {
-        if (mountedRef.current) {
-          setData(data);
+      setState((prevState) => ({ ...prevState, status: "loading" }));
+
+      setRefetch(() => () => {
+        if (fetchConfig?.refetch) {
+          fetchData(fetchConfig?.refetch(), fetchConfig);
         }
-        return data;
-      })
-      .catch((error) => {
-        setError(error);
-        return Promise.reject(error);
       });
-  };
+
+      return promise
+        .then((data) => {
+          if (mountedRef.current) {
+            setData(data);
+          }
+          return data;
+        })
+        .catch((error) => {
+          setError(error);
+          if (initialConfig?.throwError) return Promise.reject(error);
+        });
+    },
+    [setData, mountedRef, initialConfig?.throwError, setError]
+  );
 
   return {
     isPending: state.status === "pending",

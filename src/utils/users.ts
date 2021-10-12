@@ -11,7 +11,7 @@ export const useUsers = (param?: Partial<Project>) => {
 
   useEffect(() => {
     fetchData(clientHttp("users", { data: cleanObject(param || {}) }));
-  }, [param]);
+  }, [clientHttp, fetchData, param]);
 
   return results;
 };

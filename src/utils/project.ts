@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Project } from "screens/project-list/list";
 import { cleanObject } from "utils";
 import { useHttp } from "./http";
@@ -47,14 +47,18 @@ const useProjects = (param?: Partial<Project>) => {
 
   const clientHttp = useHttp();
 
-  const fetchProjects = () =>
-    clientHttp("projects", {
-      data: cleanObject(param || {}),
-    });
+  const fetchProjects = useCallback(
+    () =>
+      clientHttp("projects", {
+        data: cleanObject(param || {}),
+      }),
+
+    [param, clientHttp]
+  );
 
   useEffect(() => {
     fetchData(fetchProjects(), { refetch: fetchProjects });
-  }, [param]);
+  }, [fetchData, fetchProjects, param]);
 
   return results;
 };

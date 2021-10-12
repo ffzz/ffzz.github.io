@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { isArrowFunction } from "typescript";
 
 const isFalse = (value: unknown): boolean => {
   //if value equals zero return false(!value ==== true), or return true
@@ -38,7 +37,7 @@ const cleanObject = (object: { [key: string]: unknown }) => {
 const useFetch = (callback: () => void) => {
   useEffect(() => {
     callback();
-  }, []);
+  }, [callback]);
 };
 
 const useDebounce = <V>(value: V, delay?: number) => {
