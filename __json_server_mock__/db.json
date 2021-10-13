@@ -54,7 +54,7 @@
       "name": "物料管理系统",
       "personId": 2,
       "organization": "物料组",
-      "pin": true,
+      "pin": false,
       "createdAt": 1546300800000
     },
     {

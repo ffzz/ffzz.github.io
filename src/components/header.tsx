@@ -6,9 +6,7 @@ import { useAuth } from "context/auth-context";
 import { resetRoute } from "utils";
 import { ProjectPopover } from "./project-popover";
 
-const PageHeader = (props: {
-  createProjectButton: React.ReactElement
-}) => {
+const PageHeader = () => {
   const { logout, user } = useAuth();
 
   return (
@@ -20,7 +18,7 @@ const PageHeader = (props: {
         >
           <Logo width="18rem" color="rgb(38,132,255)" />
         </NoPaddingButton>
-        <ProjectPopover {...props} />
+        <ProjectPopover />
         <span>users</span>
       </HeaderLeft>
       <HeaderRight>

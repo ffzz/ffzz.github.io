@@ -2,8 +2,10 @@ import { Dropdown, Menu, Table, TableProps } from "antd";
 import { NoPaddingButton } from "components/lib";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEditProject } from "utils/project";
+import { projectListSliceActions } from "./project-list.slice";
 import { User } from "./search-panel";
 
 export interface Project {
@@ -18,7 +20,6 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  createProjectButton: React.ReactElement
 }
 
 export const List = ({ users, ...props }: ListProps) => {
@@ -27,8 +28,10 @@ export const List = ({ users, ...props }: ListProps) => {
   // currying 科里化写法 与上面是一样的性质
   const editPinStatus = (id: number) => (pin: boolean) => {
     mutate({ id, pin }).then(props.refresh);
-    //window.location.reload()
+    window.location.reload()
   };
+
+  const dispatch = useDispatch()
 
   return (
     <Table
@@ -94,12 +97,17 @@ export const List = ({ users, ...props }: ListProps) => {
                 overlay={
                   <Menu>
                     <Menu.Item key="edit">
-                      {props.createProjectButton}
+                      <NoPaddingButton
+                        onClick={() => dispatch(projectListSliceActions.openProjectModal())}
+                        type="link"
+                      >
+                        Create project
+                      </NoPaddingButton>
                     </Menu.Item>
                   </Menu>
                 }
               >
-                <NoPaddingButton type='link'>...</NoPaddingButton>
+                <NoPaddingButton type="link">...</NoPaddingButton>
               </Dropdown>
             );
           },
