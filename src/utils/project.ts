@@ -43,10 +43,9 @@ export const useAddProject = () => {
 };
 
 const useProjects = (param?: Partial<Project>) => {
-  const { fetchData, ...results } = useAsyncHttp<Project[]>();
-
   const clientHttp = useHttp();
 
+  const { fetchData, ...results } = useAsyncHttp<Project[]>();
   const fetchProjects = useCallback(
     () =>
       clientHttp("projects", {
