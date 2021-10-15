@@ -34,17 +34,9 @@
   "me": [],
   "projects": [
     {
-      "id": 1,
-      "name": "骑手管理",
-      "personId": 1,
-      "organization": "外卖组",
-      "createdAt": 1604989757139,
-      "pin": true
-    },
-    {
       "id": 2,
       "name": "团购 APP",
-      "personId": 2,
+      "personId": 3,
       "organization": "团购组",
       "createdAt": 1604989757139,
       "pin": false
@@ -72,6 +64,21 @@
       "organization": "外卖组",
       "createdAt": 1546900800000,
       "pin": true
+    },
+    {
+      "id": 1634295397322,
+      "createdAt": 1634295397322,
+      "pin": false,
+      "name": "1",
+      "organization": "2",
+      "personId": 1
+    },
+    {
+      "id": 1634295433058,
+      "createdAt": 1634295433058,
+      "pin": false,
+      "name": "haha",
+      "organization": "test"
     }
   ]
 }

@@ -3,7 +3,7 @@ import { NoPaddingButton } from "components/lib";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { useEditProject } from "utils/project";
+import { useDeleteProject, useEditProject } from "utils/project";
 import { User } from "./search-panel";
 import { useProjectModal } from "./util";
 
@@ -26,10 +26,15 @@ export const List = ({ users, ...props }: ListProps) => {
   // const editPinStatus = (id:number, pin: boolean) => mutate({id, pin})
   // currying 科里化写法 与上面是一样的性质
   const editPinStatus = (id: number) => (pin: boolean) => {
-    mutate({ id, pin }).then(props.refresh);
+    mutate({ id, pin });
     //window.location.reload()
   };
-  const { open } = useProjectModal()
+  const { editProject: edit } = useProjectModal();
+  const editProject = (id: number) => () => edit(id);
+
+  const {mutateAsync} = useDeleteProject();
+
+  const deleteProject = (id: number) => () => mutateAsync(id);
 
   return (
     <Table
@@ -95,8 +100,19 @@ export const List = ({ users, ...props }: ListProps) => {
                 overlay={
                   <Menu>
                     <Menu.Item key="edit">
-                      <NoPaddingButton onClick={open} type="link">
-                        Create project
+                      <NoPaddingButton
+                        onClick={editProject(project.id)}
+                        type="link"
+                      >
+                        edit
+                      </NoPaddingButton>
+                    </Menu.Item>
+                    <Menu.Item key="delete">
+                      <NoPaddingButton
+                        onClick={deleteProject(project.id)}
+                        type="link"
+                      >
+                        delete
                       </NoPaddingButton>
                     </Menu.Item>
                   </Menu>

@@ -2,7 +2,6 @@ import { useDebounce, useDocumentTitle } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import styled from "@emotion/styled";
-import { Button, Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/users";
 import { useProjectModal, useProjectsSearchParams } from "./util";
@@ -17,10 +16,10 @@ export const ProjectListScreen = () => {
   const { open } = useProjectModal();
 
   // To fetch list da
-  const { isLoading, error, data: list, refetch } = useProjects(debouncedParam);
+  const { isLoading, error, data: list } = useProjects(debouncedParam);
   // To fetch users data
   const { data: users } = useUsers();
-  console.log('refetch',refetch);
+  
 
   return (
     <Container>
@@ -33,7 +32,6 @@ export const ProjectListScreen = () => {
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? <ErrorBox error={error} />  : ""}
       <List
-        refresh={refetch}
         users={users || []}
         dataSource={list || []}
         loading={isLoading}
