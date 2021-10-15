@@ -64,21 +64,6 @@
       "organization": "外卖组",
       "createdAt": 1546900800000,
       "pin": true
-    },
-    {
-      "id": 1634295397322,
-      "createdAt": 1634295397322,
-      "pin": false,
-      "name": "1",
-      "organization": "2",
-      "personId": 1
-    },
-    {
-      "id": 1634295433058,
-      "createdAt": 1634295433058,
-      "pin": false,
-      "name": "haha",
-      "organization": "test"
     }
   ]
 }

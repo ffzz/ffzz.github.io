@@ -1,4 +1,4 @@
-import { Dropdown, Menu, Table, TableProps } from "antd";
+import { Dropdown, Menu, Modal, Table, TableProps } from "antd";
 import { NoPaddingButton } from "components/lib";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
@@ -29,12 +29,7 @@ export const List = ({ users, ...props }: ListProps) => {
     mutate({ id, pin });
     //window.location.reload()
   };
-  const { editProject: edit } = useProjectModal();
-  const editProject = (id: number) => () => edit(id);
-
-  const {mutateAsync} = useDeleteProject();
-
-  const deleteProject = (id: number) => () => mutateAsync(id);
+  
 
   return (
     <Table
@@ -95,8 +90,37 @@ export const List = ({ users, ...props }: ListProps) => {
           title: "Edit",
           key: "edit",
           render(value, project) {
-            return (
-              <Dropdown
+            return <More project={project} />
+          },
+        },
+      ]}
+      {...props}
+    />
+  );
+};
+
+type TypeDelete = undefined | React.MouseEventHandler<HTMLElement>
+
+const More = ({project}:{project: Project}) => {
+
+  const { editProject: edit } = useProjectModal();
+  const editProject = (id: number) => () => edit(id);
+  const { mutateAsync } = useDeleteProject();
+  const deleteProject = (id: number) => mutateAsync(id);
+
+  const confirmDeleteProject = (id:number) => {
+    Modal.confirm({
+      title: 'Are you sure to delete this project?',
+      content: 'Click OK to delete',
+      okText: 'OK',
+      onOk(){
+        deleteProject(id)
+      }
+    })
+  }
+
+  return (
+    <Dropdown
                 overlay={
                   <Menu>
                     <Menu.Item key="edit">
@@ -109,7 +133,7 @@ export const List = ({ users, ...props }: ListProps) => {
                     </Menu.Item>
                     <Menu.Item key="delete">
                       <NoPaddingButton
-                        onClick={deleteProject(project.id)}
+                        onClick={() =>confirmDeleteProject(project.id)}
                         type="link"
                       >
                         delete
@@ -120,11 +144,5 @@ export const List = ({ users, ...props }: ListProps) => {
               >
                 <NoPaddingButton type="link">...</NoPaddingButton>
               </Dropdown>
-            );
-          },
-        },
-      ]}
-      {...props}
-    />
-  );
-};
+  )
+}
