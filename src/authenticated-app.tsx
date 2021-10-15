@@ -4,10 +4,7 @@ import { ProjectListScreen } from "screens/project-list";
 import { ProjectScreen } from "screens/project";
 import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { useState } from "react";
 import { ProjectModal } from "screens/project-list/project-create-modal";
-import { Button } from "antd";
-import { NoPaddingButton } from "components/lib";
 
 const AuthenticatedApp = () => {
   return (
@@ -18,7 +15,7 @@ const AuthenticatedApp = () => {
           <Routes>
             <Route path={"/projects"} element={<ProjectListScreen />}></Route>
             <Route
-              path={"/projects/:projectId/*"}
+              path={"/projects/:projectId"}
               element={<ProjectScreen />}
             ></Route>
             <Navigate to={"/projects"} />

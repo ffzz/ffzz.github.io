@@ -2,7 +2,7 @@
 export const KanbanScreen = () => {
     return (
         <div>
-            Kanban
+            Kanbandfgsdfg 
         </div>
     )
 }
