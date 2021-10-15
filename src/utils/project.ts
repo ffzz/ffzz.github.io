@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { useQuery } from "react-query";
 import { Project } from "screens/project-list/list";
 import { cleanObject } from "utils";
 import { useHttp } from "./http";
@@ -42,24 +43,9 @@ export const useAddProject = () => {
   };
 };
 
-const useProjects = (param?: Partial<Project>) => {
+export const useProjects = (param?: Partial<Project>) => {
   const clientHttp = useHttp();
-
-  const { fetchData, ...results } = useAsyncHttp<Project[]>();
-  const fetchProjects = useCallback(
-    () =>
-      clientHttp("projects", {
-        data: cleanObject(param || {}),
-      }),
-
-    [param, clientHttp]
+  return useQuery<Project[]>(["projects", cleanObject(param)], () =>
+    clientHttp("projects", { data: cleanObject(param) })
   );
-
-  useEffect(() => {
-    fetchData(fetchProjects(), { refetch: fetchProjects });
-  }, [fetchData, fetchProjects, param]);
-
-  return results;
 };
-
-export { useProjects };

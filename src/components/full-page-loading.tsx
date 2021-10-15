@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { Spin, Typography } from "antd"
+import { ErrorBox } from "./lib"
 
 
 const FullPage = styled.div `
@@ -21,7 +22,7 @@ export const FullPageLoading = () => {
 export const FullPageError = ({error}:{error:Error|null}) => {
     return (
         <FullPage>
-            <Typography.Text type='danger'>{error?.message}</Typography.Text>
+            <ErrorBox error={error} />
         </FullPage>
     )
 }

@@ -17,7 +17,7 @@ const isVoid = (value: unknown) => {
  * @author "Benchen"
  *
  */
-const cleanObject = (object: { [key: string]: unknown }) => {
+const cleanObject = (object?: { [key: string]: unknown }) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
     const value = result[key];

@@ -6,7 +6,7 @@ import { Button, Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/users";
 import { useProjectModal, useProjectsSearchParams } from "./util";
-import { NoPaddingButton, Row } from "components/lib";
+import { ErrorBox, NoPaddingButton, Row } from "components/lib";
 
 export const ProjectListScreen = () => {
   useDocumentTitle("Project list", false);
@@ -14,12 +14,13 @@ export const ProjectListScreen = () => {
   const [param, setParam] = useProjectsSearchParams();
   const debouncedParam = useDebounce(param, 200);
 
-  const { open }= useProjectModal()
+  const { open } = useProjectModal();
 
   // To fetch list da
   const { isLoading, error, data: list, refetch } = useProjects(debouncedParam);
   // To fetch users data
   const { data: users } = useUsers();
+  console.log('refetch',refetch);
 
   return (
     <Container>
@@ -30,11 +31,7 @@ export const ProjectListScreen = () => {
         </NoPaddingButton>
       </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
-      {error ? (
-        <Typography.Text type="warning">{error.message}</Typography.Text>
-      ) : (
-        ""
-      )}
+      {error ? <ErrorBox error={error} />  : ""}
       <List
         refresh={refetch}
         users={users || []}

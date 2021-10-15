@@ -47,7 +47,7 @@
       "personId": 2,
       "organization": "团购组",
       "createdAt": 1604989757139,
-      "pin": true
+      "pin": false
     },
     {
       "id": 3,
