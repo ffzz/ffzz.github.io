@@ -10,38 +10,22 @@ import { Button } from "antd";
 import { NoPaddingButton } from "components/lib";
 
 const AuthenticatedApp = () => {
-  const [projectModalOpen, setProjectModalOpen] = useState(false);
-
-  const createProjectButton = (
-    <NoPaddingButton onClick={()=>setProjectModalOpen(true)} type="link">
-      Create project
-    </NoPaddingButton>
-  );
-
   return (
     <Container>
-      <PageHeader createProjectButton={createProjectButton} />
-      <Main>
-        <BrowserRouter>
+      <BrowserRouter>
+        <PageHeader />
+        <Main>
           <Routes>
-            <Route
-              path={"/projects"}
-              element={
-                <ProjectListScreen createProjectButton={createProjectButton} />
-              }
-            ></Route>
+            <Route path={"/projects"} element={<ProjectListScreen />}></Route>
             <Route
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
             ></Route>
             <Navigate to={"/projects"} />
           </Routes>
-        </BrowserRouter>
-      </Main>
-      <ProjectModal
-        projectModalOpen={projectModalOpen}
-        onClose={() => setProjectModalOpen(false)}
-      />
+        </Main>
+        <ProjectModal />
+      </BrowserRouter>
     </Container>
   );
 };
