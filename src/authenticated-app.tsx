@@ -12,12 +12,12 @@ const AuthenticatedApp = () => {
         <PageHeader />
         <Main>
           <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />}/>
-              <Route
-                path={"/projects/:projectId/*"}
-                element={<ProjectScreen />}
-              />
-            <Navigate to={'/projects'} />
+            <Route path={"/projects"} element={<ProjectListScreen />} />
+            <Route
+              path={"/projects/:projectId/*"}
+              element={<ProjectScreen />}
+            />
+            <Navigate to={"/projects"} />
           </Routes>
         </Main>
         <ProjectModal />
@@ -32,6 +32,9 @@ const Container = styled.div`
   grid-template-rows: 6rem 1fr;
 `;
 
-const Main = styled.main``;
+const Main = styled.main`
+  display: flex;
+  overflow: hidden;
+`;
 
 export default AuthenticatedApp;
