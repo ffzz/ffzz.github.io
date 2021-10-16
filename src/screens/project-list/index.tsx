@@ -2,8 +2,8 @@ import { useDebounce, useDocumentTitle } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import styled from "@emotion/styled";
-import { useProjects } from "utils/project";
-import { useUsers } from "utils/users";
+import { useProjects } from "utils/use-project";
+import { useUsers } from "utils/use-users";
 import { useProjectModal, useProjectsSearchParams } from "./util";
 import { ErrorBox, NoPaddingButton, Row } from "components/lib";
 

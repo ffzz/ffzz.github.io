@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Project } from "screens/project-list/list";
+import { Project } from "types";
 import { cleanObject } from "utils";
-import { useHttp } from "./http";
+import { useHttp } from "./use-http";
 
 export const useEditProject = () => {
   const http = useHttp();

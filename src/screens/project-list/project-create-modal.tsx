@@ -4,7 +4,7 @@ import { useForm } from "antd/lib/form/Form";
 import { ErrorBox } from "components/lib";
 import { UserSelect } from "components/user-select";
 import { useEffect } from "react";
-import { useAddProject, useEditProject } from "utils/project";
+import { useAddProject, useEditProject } from "utils/use-project";
 import { useProjectModal } from "./util";
 
 export const ProjectModal = () => {

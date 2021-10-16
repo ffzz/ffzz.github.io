@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
 import { LoginUser } from "utils/auth-provider";
 import * as auth from "utils/auth-provider";
-import { User } from "screens/project-list/search-panel";
-import { http } from "utils/http";
+import { User } from "types/User";
+import { http } from "utils/use-http";
 import { useFetch } from "utils";
-import { useAsyncHttp } from "utils/useAsyncHttp";
+import { useAsyncHttp } from "utils/use-AsyncHttp";
 import { FullPageError, FullPageLoading } from "components/full-page-loading";
 import { useQueryClient } from "react-query";
 

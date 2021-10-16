@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import PageHeader from "components/header";
 import { ProjectListScreen } from "screens/project-list";
 import { ProjectScreen } from "screens/project";
-import { Navigate, Route, Routes } from "react-router";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ProjectModal } from "screens/project-list/project-create-modal";
 
 const AuthenticatedApp = () => {
@@ -13,12 +12,12 @@ const AuthenticatedApp = () => {
         <PageHeader />
         <Main>
           <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />}></Route>
-            <Route
-              path={"/projects/:projectId"}
-              element={<ProjectScreen />}
-            ></Route>
-            <Navigate to={"/projects"} />
+            <Route path={"/projects"} element={<ProjectListScreen />}/>
+              <Route
+                path={"/projects/:projectId/*"}
+                element={<ProjectScreen />}
+              />
+            <Navigate to={'/projects'} />
           </Routes>
         </Main>
         <ProjectModal />

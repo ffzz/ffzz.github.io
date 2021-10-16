@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useProject } from "utils/project";
+import { useProject } from "utils/use-project";
 import { useUrlQueryParam } from "utils/url";
 
 export const useProjectModal = () => {

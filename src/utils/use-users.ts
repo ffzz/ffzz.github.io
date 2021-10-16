@@ -1,9 +1,9 @@
-import { useAsyncHttp } from "utils/useAsyncHttp";
+import { useAsyncHttp } from "utils/use-AsyncHttp";
 import { useEffect } from "react";
-import { useHttp } from "./http";
-import { Project } from "screens/project-list/list";
+import { useHttp } from "./use-http";
+import { Project } from "types";
 import { cleanObject } from "utils";
-import { User } from "screens/project-list/search-panel";
+import { User } from "types/User";
 
 export const useUsers = (param?: Partial<Project>) => {
   const clientHttp = useHttp();
