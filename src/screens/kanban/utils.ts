@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useDebounce } from "utils";
 import { useLocation } from "react-router";
 import { useUrlQueryParam } from "utils/url";
 import { useProject } from "utils/use-project";
+import { useFetchTask } from "utils/use-tasks";
 
 export const useProjectIdInUrl = () => {
   const { pathname } = useLocation();
@@ -34,3 +35,31 @@ export const useTasksSearchParams = () => {
 };
 
 export const useTasksQueryKey = () => ["tasks", useTasksSearchParams()];
+
+export const useTaskEditingModal = () => {
+  const [{ editingTaskId }, setEditingTaskId] = useUrlQueryParam([
+    "editingTaskId",
+  ]);
+  const { data: editingTaskData, isLoading: isModalLoading } = useFetchTask(
+    Number(editingTaskId)
+  );
+
+  const startEditTask = useCallback(
+    (id: number) => {
+      setEditingTaskId({ editingTaskId: id });
+    },
+    [setEditingTaskId]
+  );
+
+  const closeTaskModal = useCallback(() => {
+    setEditingTaskId({ editingTaskId: "" });
+  }, [setEditingTaskId]);
+
+  return {
+    editingTaskId,
+    startEditTask,
+    closeTaskModal,
+    editingTaskData,
+    isModalLoading,
+  };
+};

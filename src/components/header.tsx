@@ -5,6 +5,8 @@ import { ReactComponent as Logo } from "../assets/software-logo.svg";
 import { useAuth } from "context/auth-context";
 import { resetRoute } from "utils";
 import { ProjectPopover } from "./project-popover";
+import { Link, Route, Routes } from "react-router-dom";
+import { ProjectScreen } from "screens/project";
 
 const PageHeader = () => {
   const { logout, user } = useAuth();
@@ -12,13 +14,15 @@ const PageHeader = () => {
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <NoPaddingButton
-          type="link"
-          onClick={() => resetRoute()}
-        >
+        <NoPaddingButton type="link" onClick={() => resetRoute()}>
           <Logo width="18rem" color="rgb(38,132,255)" />
         </NoPaddingButton>
-        <ProjectPopover />
+        <Link to="projects">
+          <ProjectPopover />
+        </Link>
+        <Routes>
+          <Route element={<ProjectScreen />} />
+        </Routes>
         <span>users</span>
       </HeaderLeft>
       <HeaderRight>

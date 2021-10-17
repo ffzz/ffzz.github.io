@@ -3,7 +3,6 @@ import { Row } from "components/lib";
 import { TaskTypeSelect } from "components/task-type-select";
 import { UserSelect } from "components/user-select";
 import { useUrlQueryParam } from "utils/url";
-import { useTasksSearchParams } from "./utils";
 
 export const SearchPanel = () => {
   //const searchParams = useTasksSearchParams()

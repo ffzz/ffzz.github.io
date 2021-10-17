@@ -68,107 +68,172 @@
   ],
   "kanbans": [
     {
-      "id":1,
-      "name":"待完成",
-      "projectId":2
-    },{
+      "id": 1,
+      "name": "待完成",
+      "projectId": 2
+    },
+    {
       "id": 2,
       "name": "开发中",
       "projectId": 2
-    }
-    ,{
+    },
+    {
       "id": 3,
       "name": "已完成",
       "projectId": 2
+    },
+    {
+      "id": 1634473817362,
+      "createdAt": 1634473817362,
+      "name": "待分配",
+      "projectId": 3
+    },
+    {
+      "id": 1634473823658,
+      "createdAt": 1634473823658,
+      "name": "待完成",
+      "projectId": 3
+    },
+    {
+      "id": 1634473901794,
+      "createdAt": 1634473901794,
+      "name": "FANGZHENG CHEN",
+      "projectId": 2
+    },
+    {
+      "id": 1634473944049,
+      "createdAt": 1634473944049,
+      "name": "FANGZHENG CHEN",
+      "projectId": 3
     }
   ],
-  "tasks":[
-   { "id": 1,
-    "name": "自测",
-    "processorId":1,
-    "projectId":2,
-    "epicId": 1,
-    "kanbanId": 1,
-    "typeId":1,
-    "note":"无"
+  "tasks": [
+    {
+      "id": 2,
+      "name": "管理注册界面开发",
+      "projectId": 2,
+      "processorId": 2,
+      "epicId": 2,
+      "kanbanId": 2,
+      "typeId": 2,
+      "note": "注意休息"
     },
-   { "id": 2,
-    "name": "管理注册界面开发",
-    "projectId": 2,
-    "processorId": 2,
-    "epicId": 2,
-    "kanbanId": 2,
-    "typeId":2,
-    "note":"注意休息"
+    {
+      "id": 3,
+      "name": "性能优化",
+      "projectId": 2,
+      "processorId": 3,
+      "epicId": 2,
+      "kanbanId": 2,
+      "typeId": 2,
+      "note": "无"
     },
-   { "id": 3,
-    "name": "性能优化",
-    "projectId": 2,
-    "processorId": 3,
-    "epicId": 2,
-    "kanbanId": 2,
-    "typeId":2,
-    "note":"无"
+    {
+      "id": 4,
+      "name": "UI开发",
+      "projectId": 2,
+      "processorId": 1,
+      "epicId": 2,
+      "kanbanId": 1,
+      "typeId": 2,
+      "note": "无"
     },
-   { "id": 4,
-    "name": "UI开发",
-    "projectId": 2,
-    "processorId": 1,
-    "epicId": 2,
-    "kanbanId": 1,
-    "typeId":2,
-    "note":"无"
+    {
+      "id": 5,
+      "name": "管理登录界面开发",
+      "processorId": 1,
+      "projectId": 2,
+      "epicId": 1,
+      "kanbanId": 3,
+      "typeId": 1,
+      "note": "无"
     },
-   { "id": 5,
-    "name": "管理登录界面开发",
-    "processorId":1,
-    "projectId": 2,
-    "epicId": 1,
-    "kanbanId": 3,
-    "typeId":1,
-    "note":"无"
+    {
+      "id": 6,
+      "name": "单元测试",
+      "processorId": 1,
+      "projectId": 2,
+      "epicId": 1,
+      "kanbanId": 3,
+      "typeId": 2,
+      "note": "无"
     },
-   { "id": 6,
-    "name": "单元测试",
-    "processorId":1,
-    "projectId": 2,
-    "epicId": 1,
-    "kanbanId": 3,
-    "typeId":1,
-    "note":"无"
+    {
+      "id": 7,
+      "name": "权利管理开发",
+      "processorId": 1,
+      "projectId": 2,
+      "epicId": 1,
+      "kanbanId": 3,
+      "typeId": 1,
+      "note": "无"
     },
-   { "id": 7,
-    "name": "权利管理开发",
-    "processorId":1,
-    "projectId": 2,
-    "epicId": 1,
-    "kanbanId": 3,
-    "typeId":1,
-    "note":"无"
+    {
+      "id": 8,
+      "name": "首页开发",
+      "processorId": 3,
+      "projectId": 2,
+      "epicId": 1,
+      "kanbanId": 1,
+      "typeId": 1,
+      "note": "无"
     },
-   { "id": 8,
-    "name": "首页开发",
-    "processorId":1,
-    "projectId": 2,
-    "epicId": 1,
-    "kanbanId": 1,
-    "typeId":1,
-    "note":"无"
+    {
+      "id": 9,
+      "name": "profile页面开发",
+      "processorId": 1,
+      "projectId": 2,
+      "epicId": 1,
+      "kanbanId": 1,
+      "typeId": 1,
+      "note": "无"
     },
-   { "id": 9,
-    "name": "profile页面开发",
-    "processorId":1,
-    "projectId": 2,
-    "epicId": 1,
-    "kanbanId": 1,
-    "typeId":1,
-    "note":"无"
+    {
+      "id": 1634473831144,
+      "createdAt": 1634473831144,
+      "projectId": 3,
+      "name": "测试一下",
+      "kanbanId": 1634473817362
+    },
+    {
+      "id": 1634473871374,
+      "createdAt": 1634473871374,
+      "projectId": 2,
+      "name": "hello",
+      "kanbanId": 2,
+      "processorId": 1,
+      "typeId": 1
+    },
+    {
+      "id": 1634473897484,
+      "createdAt": 1634473897484,
+      "projectId": 2,
+      "name": "的",
+      "kanbanId": 2
+    },
+    {
+      "id": 1634473939980,
+      "createdAt": 1634473939980,
+      "projectId": 3,
+      "name": "风格和",
+      "kanbanId": 1634473823658
+    },
+    {
+      "id": 1634473948857,
+      "createdAt": 1634473948857,
+      "projectId": 3,
+      "name": "风格和记得发",
+      "kanbanId": 1634473944049
     }
   ],
-  "taskTypes":[
-    {"id": 1,
-    "name": "task"},
-    {"id": 2,
-    "name": "bug"}
+  "taskTypes": [
+    {
+      "id": 1,
+      "name": "task"
+    },
+    {
+      "id": 2,
+      "name": "bug"
+    }
   ]
 }
