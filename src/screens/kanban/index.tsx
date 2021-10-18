@@ -86,12 +86,16 @@ export const useDragEnd = () => {
     if (type==='ROW') {
       const fromKanbanId = +source.droppableId
       const toKanbanId = +destination.droppableId
-      if (fromKanbanId === toKanbanId) {
+      
+      const fromTask = allTasks?.filter(
+        (task) => task.kanbanId === fromKanbanId
+        )[source.index];
+      const toTask = allTasks?.filter(task => task.kanbanId === toKanbanId)[destination.index]
+      if (fromTask?.id === toTask?.id) {
         return
       }
-
-      const fromTask = allTasks?.filter(task => task.kanbanId === Number(fromKanbanId))[source.index]
-      const toTask = allTasks?.filter(task => task.id === Number(toKanbanId))[destination.index]
+      
+      console.log('to task: ', toTask)
       if (fromTask?.id === toTask?.id) {
         return
       }
