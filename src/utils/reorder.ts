@@ -2,7 +2,7 @@
  *
  * @param fromId the Id of the project to be ordered;
  * @param type 'before | 'after'
- * @param referenceId id can be referenced
+ * @param toId id can be referenced
  * @param list the list to be ordered ie, tasks, kanban
  * @returns insert()
  */
@@ -10,21 +10,21 @@
 export const reorder = ({
   fromId,
   type,
-  referenceId,
+  toId,
   list,
 }: {
   list: { id: number }[];
   fromId: number;
   type: "after" | "before";
-  referenceId: number;
+  toId: number;
 }) => {
   const copiedList = [...list];
   const movingItemIndex = copiedList.findIndex((item) => item.id === fromId);
-  if (!referenceId) {
+  if (!toId) {
     return insertAfter([...copiedList], movingItemIndex, copiedList.length - 1);
   }
 
-  const targetIndex = copiedList.findIndex((item) => item.id === referenceId);
+  const targetIndex = copiedList.findIndex((item) => item.id === toId);
   const insert = type === "after" ? insertAfter : insertBefore;
   return insert([...copiedList], movingItemIndex, targetIndex);
 };

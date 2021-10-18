@@ -2,6 +2,7 @@ import {
   useAddConfig,
   useDeleteConfig,
   useEditConfig,
+  useReorderTaskConfig,
 } from "./use-optimistic-options";
 
 import { QueryKey, useMutation, useQuery } from "react-query";
@@ -58,4 +59,25 @@ export const useEditTask = (queryKey: QueryKey) => {
       }),
     useEditConfig(queryKey)
   );
+};
+
+export interface ReorderTaskProps {
+  // where the Item to be dragged
+  fromId: number | undefined;
+  // where the Item to be put
+  toId: number | undefined;
+  // where the Item put in the before or after the target place(toId)
+  type: "before" | "after";
+  fromKanbanId?: number;
+  toKanbanId?: number;
+}
+
+export const useReorderTask = (queryKey: QueryKey) => {
+  const http = useHttp();
+  return useMutation((params: ReorderTaskProps) => {
+    return http("tasks/reorder", {
+      data: params,
+      method: "POST",
+    });
+  }, useReorderTaskConfig(queryKey));
 };

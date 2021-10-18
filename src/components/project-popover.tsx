@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Divider, List, Popover, Typography } from "antd";
+import { Divider, List, Popover, Spin, Typography } from "antd";
 import { useProjectModal } from "screens/project-list/util";
 import { useProjects } from "utils/use-project";
 import { NoPaddingButton } from "./lib";
@@ -7,7 +7,7 @@ import { NoPaddingButton } from "./lib";
 export const ProjectPopover = () => {
   const { data: projects, isLoading } = useProjects();
   const pinnedProjects = projects?.filter((project) => project.pin === true);
-  const {open}= useProjectModal()
+  const { open } = useProjectModal();
   const content = (
     <Content>
       <Typography.Text type="secondary">Marked Projects</Typography.Text>
@@ -17,14 +17,15 @@ export const ProjectPopover = () => {
           <List.Item.Meta key={project.id} title={project.name} />
         ))}
       </List>
-      <Divider orientation='center' style={{ margin: "1rem" }} />
+      <Divider orientation="center" style={{ margin: "1rem" }} />
       <NoPaddingButton onClick={open} type="link">
-      Create project
-    </NoPaddingButton>
+        Create project
+      </NoPaddingButton>
     </Content>
   );
+  const loadingContent = isLoading ? <Spin size='small' /> : content
   return (
-    <Popover placement="bottom" content={content}>
+    <Popover placement="bottom" content={loadingContent}>
       <span>projects</span>
     </Popover>
   );

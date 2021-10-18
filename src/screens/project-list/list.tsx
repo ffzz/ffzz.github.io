@@ -21,7 +21,6 @@ export const List = ({ users, ...props }: ListProps) => {
     mutate({ id, pin });
     //window.location.reload()
   };
-  
 
   return (
     <Table
@@ -82,7 +81,7 @@ export const List = ({ users, ...props }: ListProps) => {
           title: "Edit",
           key: "edit",
           render(value, project) {
-            return <More project={project} />
+            return <More project={project} />;
           },
         },
       ]}
@@ -91,50 +90,45 @@ export const List = ({ users, ...props }: ListProps) => {
   );
 };
 
-type TypeDelete = undefined | React.MouseEventHandler<HTMLElement>
 
-const More = ({project}:{project: Project}) => {
-
+const More = ({ project }: { project: Project }) => {
   const { editProject: edit } = useProjectModal();
   const editProject = (id: number) => () => edit(id);
   const { mutateAsync } = useDeleteProject();
   const deleteProject = (id: number) => mutateAsync(id);
 
-  const confirmDeleteProject = (id:number) => {
+  const confirmDeleteProject = (id: number) => {
     Modal.confirm({
-      title: 'Are you sure to delete this project?',
-      content: 'Click OK to delete',
-      okText: 'OK',
-      onOk(){
-        deleteProject(id)
-      }
-    })
-  }
+      title: "Are you sure to delete this project?",
+      content: "Click OK to delete",
+      okText: "OK",
+      onOk() {
+        deleteProject(id);
+      },
+    });
+  };
 
   return (
     <Dropdown
-                overlay={
-                  <Menu>
-                    <Menu.Item key="edit">
-                      <NoPaddingButton
-                        onClick={editProject(project.id)}
-                        type="link"
-                      >
-                        edit
-                      </NoPaddingButton>
-                    </Menu.Item>
-                    <Menu.Item key="delete">
-                      <NoPaddingButton
-                        onClick={() =>confirmDeleteProject(project.id)}
-                        type="link"
-                      >
-                        delete
-                      </NoPaddingButton>
-                    </Menu.Item>
-                  </Menu>
-                }
-              >
-                <NoPaddingButton type="link">...</NoPaddingButton>
-              </Dropdown>
-  )
-}
+      overlay={
+        <Menu>
+          <Menu.Item key="edit">
+            <NoPaddingButton onClick={editProject(project.id)} type="link">
+              edit
+            </NoPaddingButton>
+          </Menu.Item>
+          <Menu.Item key="delete">
+            <NoPaddingButton
+              onClick={() => confirmDeleteProject(project.id)}
+              type="link"
+            >
+              delete
+            </NoPaddingButton>
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      <NoPaddingButton type="link">...</NoPaddingButton>
+    </Dropdown>
+  );
+};
