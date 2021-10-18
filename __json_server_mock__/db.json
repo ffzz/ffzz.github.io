@@ -105,89 +105,15 @@
       "createdAt": 1634473944049,
       "name": "FANGZHENG CHEN",
       "projectId": 3
+    },
+    {
+      "type": "after",
+      "fromId": 1,
+      "toId": 2,
+      "id": 1634473944050
     }
   ],
   "tasks": [
-    {
-      "id": 2,
-      "name": "管理注册界面开发",
-      "projectId": 2,
-      "processorId": 2,
-      "epicId": 2,
-      "kanbanId": 2,
-      "typeId": 2,
-      "note": "注意休息"
-    },
-    {
-      "id": 3,
-      "name": "性能优化",
-      "projectId": 2,
-      "processorId": 3,
-      "epicId": 2,
-      "kanbanId": 2,
-      "typeId": 2,
-      "note": "无"
-    },
-    {
-      "id": 4,
-      "name": "UI开发",
-      "projectId": 2,
-      "processorId": 1,
-      "epicId": 2,
-      "kanbanId": 1,
-      "typeId": 2,
-      "note": "无"
-    },
-    {
-      "id": 5,
-      "name": "管理登录界面开发",
-      "processorId": 1,
-      "projectId": 2,
-      "epicId": 1,
-      "kanbanId": 3,
-      "typeId": 1,
-      "note": "无"
-    },
-    {
-      "id": 6,
-      "name": "单元测试",
-      "processorId": 1,
-      "projectId": 2,
-      "epicId": 1,
-      "kanbanId": 3,
-      "typeId": 2,
-      "note": "无"
-    },
-    {
-      "id": 7,
-      "name": "权利管理开发",
-      "processorId": 1,
-      "projectId": 2,
-      "epicId": 1,
-      "kanbanId": 3,
-      "typeId": 1,
-      "note": "无"
-    },
-    {
-      "id": 8,
-      "name": "首页开发",
-      "processorId": 3,
-      "projectId": 2,
-      "epicId": 1,
-      "kanbanId": 1,
-      "typeId": 1,
-      "note": "无"
-    },
-    {
-      "id": 9,
-      "name": "profile页面开发",
-      "processorId": 1,
-      "projectId": 2,
-      "epicId": 1,
-      "kanbanId": 1,
-      "typeId": 1,
-      "note": "无"
-    },
     {
       "id": 1634473831144,
       "createdAt": 1634473831144,
@@ -224,6 +150,46 @@
       "projectId": 3,
       "name": "风格和记得发",
       "kanbanId": 1634473944049
+    },
+    {
+      "fromId": 4,
+      "toId": 8,
+      "fromKanbanId": 1,
+      "toKanbanId": 1,
+      "type": "after",
+      "id": 1634473948858
+    },
+    {
+      "fromId": 4,
+      "toId": 8,
+      "fromKanbanId": 1,
+      "toKanbanId": 1,
+      "type": "after",
+      "id": 1634473948859
+    },
+    {
+      "fromId": 4,
+      "toId": 8,
+      "fromKanbanId": 1,
+      "toKanbanId": 1,
+      "type": "after",
+      "id": 1634473948860
+    },
+    {
+      "fromId": 4,
+      "toId": 8,
+      "fromKanbanId": 1,
+      "toKanbanId": 1,
+      "type": "after",
+      "id": 1634473948861
+    },
+    {
+      "fromId": 4,
+      "toId": 8,
+      "fromKanbanId": 1,
+      "toKanbanId": 1,
+      "type": "after",
+      "id": 1634473948862
     }
   ],
   "taskTypes": [
@@ -234,6 +200,14 @@
     {
       "id": 2,
       "name": "bug"
+    }
+  ],
+  "epics": [
+    {
+      "id": 1634567099661,
+      "createdAt": 1634567099661,
+      "name": "test",
+      "projectId": 2
     }
   ]
 }

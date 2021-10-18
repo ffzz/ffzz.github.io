@@ -16,8 +16,6 @@ export const KanbanColumn = React.forwardRef<
 >(({ kanban, ...props }, ref) => {
   const { data: allTasks } = useTasks(useTasksSearchParams());
   const tasks = allTasks?.filter((task) => task.kanbanId === kanban.id);
-  console.log("allTasks", allTasks);
-  console.log("useTasksSearchParams", useTasksSearchParams());
   return (
     <Container ref={ref} {...props}>
       <Row between={true}>

@@ -17,7 +17,10 @@ const AuthenticatedApp = () => {
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
             />
-            <Navigate to={"/projects"} />
+            <Route
+              path={"/"}
+              element={<Navigate replace to={"/projects"} />}
+            />
           </Routes>
         </Main>
         <ProjectModal />
