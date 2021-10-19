@@ -1,7 +1,7 @@
 import { useAuth } from "context/auth-context";
 import React from "react";
 import { Button, Form, Input } from "antd";
-import { useAsyncHttp } from "utils/useAsyncHttp";
+import { useAsyncHttp } from "utils/use-AsyncHttp";
 
 export default function RegisterScreen({
   onError,

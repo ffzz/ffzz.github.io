@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const isFalse = (value: unknown): boolean => {
   //if value equals zero return false(!value ==== true), or return true
@@ -17,7 +17,7 @@ const isVoid = (value: unknown) => {
  * @author "Benchen"
  *
  */
-const cleanObject = (object: { [key: string]: unknown }) => {
+const cleanObject = (object?: { [key: string]: unknown }) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
     const value = result[key];

@@ -1,63 +1,81 @@
-import React, { ReactNode } from 'react'
-import { LoginUser } from 'utils/auth-provider';
-import * as auth from 'utils/auth-provider'
-import { User } from 'screens/project-list/search-panel';
-import { http } from 'utils/http';
-import { useFetch } from 'utils';
-import { useAsyncHttp } from 'utils/useAsyncHttp';
-import { FullPageError, FullPageLoading } from 'components/full-page-loading';
+import React, { ReactNode } from "react";
+import { LoginUser } from "utils/auth-provider";
+import * as auth from "utils/auth-provider";
+import { User } from "types/User";
+import { http } from "utils/use-http";
+import { useFetch } from "utils";
+import { useAsyncHttp } from "utils/use-AsyncHttp";
+import { FullPageError, FullPageLoading } from "components/full-page-loading";
+import { useQueryClient } from "react-query";
 
 interface Auth {
-    user: User | null;
-    register: (form: LoginUser) => Promise<void>;
-    login: (form: LoginUser) => Promise<void>;
-    logout: () => Promise<void>;
+  user: User | null;
+  register: (form: LoginUser) => Promise<void>;
+  login: (form: LoginUser) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 const bootstrapUser = async () => {
-    let user = null
-    const token = auth.getToken()
-    if (token) {
-        const data = await http('me',{token})
-        user = data.user
-    }
-    return user
-}
+  let user = null;
+  const token = auth.getToken();
+  if (token) {
+    const data = await http("me", { token });
+    user = data.user;
+  }
+  return user;
+};
 
 const AuthContext = React.createContext<Auth | undefined>(undefined);
 
- const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const { fetchData, data:user, error, isLoading, isPending, isError, setData: setUser } = useAsyncHttp<User | null>()
+const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const {
+    fetchData,
+    data: user,
+    error,
+    isLoading,
+    isPending,
+    isError,
+    setData: setUser,
+  } = useAsyncHttp<User | null>();
 
-    const login = (form: LoginUser) => auth.login(form).then(user => setUser({...user}))
-    const register = (form: LoginUser) => auth.register(form).then(user => setUser(user))
-    const logout = () => auth.logout().then(() => setUser(null))
+  const queryClient = useQueryClient()
 
-    useFetch(() => {
-        fetchData(bootstrapUser())
-    })
+  const login = (form: LoginUser) =>
+    auth.login(form).then((user) => setUser({ ...user }));
+  const register = (form: LoginUser) =>
+    auth.register(form).then((user) => setUser(user));
+  const logout = () =>
+    auth.logout().then(() => {
+      setUser(null);
+      queryClient.clear()
+    });
 
-    if(isPending || isLoading){
-        return <FullPageLoading />
-    }
+  useFetch(() => {
+    fetchData(bootstrapUser());
+  });
 
-    if (isError) {
-        return <FullPageError error={error}/>    
-    }
+  if (isPending || isLoading) {
+    return <FullPageLoading />;
+  }
 
-    return <AuthContext.Provider children={children} value={{ user, login, register, logout }} />
-}
+  if (isError) {
+    return <FullPageError error={error} />;
+  }
+
+  return (
+    <AuthContext.Provider
+      children={children}
+      value={{ user, login, register, logout }}
+    />
+  );
+};
 
 const useAuth = () => {
-    const context = React.useContext(AuthContext)
-    if (!context) {
-        throw new Error('useAuth must be used in AuthProvider')
-    }
-    return context
-}
+  const context = React.useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used in AuthProvider");
+  }
+  return context;
+};
 
-export {
-    useAuth,
-    AuthContext,
-    AuthProvider
-}
+export { useAuth, AuthContext, AuthProvider };

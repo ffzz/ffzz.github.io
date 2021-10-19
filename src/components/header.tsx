@@ -1,27 +1,28 @@
 import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
-import { NoPaddingButton, Row } from "./lib";
-import { ReactComponent as Logo } from "../assets/software-logo.svg";
 import { useAuth } from "context/auth-context";
+import { Link } from "react-router-dom";
 import { resetRoute } from "utils";
+import { ReactComponent as Logo } from "../assets/software-logo.svg";
+import { NoPaddingButton, Row } from "./lib";
 import { ProjectPopover } from "./project-popover";
+import { UsersPopover } from "./users-popover";
 
-const PageHeader = (props: {
-  createProjectButton: React.ReactElement
-}) => {
+const PageHeader = () => {
   const { logout, user } = useAuth();
 
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <NoPaddingButton
-          type="link"
-          onClick={() => resetRoute()}
-        >
+        <NoPaddingButton type="link" onClick={() => resetRoute()}>
           <Logo width="18rem" color="rgb(38,132,255)" />
         </NoPaddingButton>
-        <ProjectPopover {...props} />
-        <span>users</span>
+        <Link to="projects">
+          <ProjectPopover />
+        </Link>
+        <Link to="users">
+          <UsersPopover />
+        </Link>
       </HeaderLeft>
       <HeaderRight>
         <Dropdown

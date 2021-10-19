@@ -1,24 +1,16 @@
-import { Dropdown, Menu, Table, TableProps } from "antd";
+import { Dropdown, Menu, Modal, Table, TableProps } from "antd";
 import { NoPaddingButton } from "components/lib";
 import { Pin } from "components/rate";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import { useEditProject } from "utils/project";
-import { User } from "./search-panel";
-
-export interface Project {
-  id: number;
-  name: string;
-  personId: number;
-  pin: boolean;
-  organization: string;
-  createdAt: string;
-}
+import { useDeleteProject, useEditProject } from "utils/use-project";
+import { Project } from "../../types";
+import { User } from "../../types/User";
+import { useProjectModal } from "./util";
 
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  createProjectButton: React.ReactElement
 }
 
 export const List = ({ users, ...props }: ListProps) => {
@@ -26,7 +18,7 @@ export const List = ({ users, ...props }: ListProps) => {
   // const editPinStatus = (id:number, pin: boolean) => mutate({id, pin})
   // currying 科里化写法 与上面是一样的性质
   const editPinStatus = (id: number) => (pin: boolean) => {
-    mutate({ id, pin }).then(props.refresh);
+    mutate({ id, pin });
     //window.location.reload()
   };
 
@@ -86,26 +78,57 @@ export const List = ({ users, ...props }: ListProps) => {
           },
         },
         {
-          title:'Edit',
-          key:'edit',
+          title: "Edit",
+          key: "edit",
           render(value, project) {
-            return (
-              <Dropdown
-                overlay={
-                  <Menu>
-                    <Menu.Item key="edit">
-                      {props.createProjectButton}
-                    </Menu.Item>
-                  </Menu>
-                }
-              >
-                <NoPaddingButton type='link'>...</NoPaddingButton>
-              </Dropdown>
-            );
+            return <More project={project} />;
           },
         },
       ]}
       {...props}
     />
+  );
+};
+
+
+const More = ({ project }: { project: Project }) => {
+  const { editProject: edit } = useProjectModal();
+  const editProject = (id: number) => () => edit(id);
+  const { mutateAsync } = useDeleteProject();
+  const deleteProject = (id: number) => mutateAsync(id);
+
+  const confirmDeleteProject = (id: number) => {
+    Modal.confirm({
+      title: "Are you sure to delete this project?",
+      content: "Click OK to delete",
+      okText: "OK",
+      onOk() {
+        deleteProject(id);
+      },
+    });
+  };
+
+  return (
+    <Dropdown
+      overlay={
+        <Menu>
+          <Menu.Item key="edit">
+            <NoPaddingButton onClick={editProject(project.id)} type="link">
+              edit
+            </NoPaddingButton>
+          </Menu.Item>
+          <Menu.Item key="delete">
+            <NoPaddingButton
+              onClick={() => confirmDeleteProject(project.id)}
+              type="link"
+            >
+              delete
+            </NoPaddingButton>
+          </Menu.Item>
+        </Menu>
+      }
+    >
+      <NoPaddingButton type="link">...</NoPaddingButton>
+    </Dropdown>
   );
 };
