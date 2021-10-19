@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "json-server": "json-server __json_server_mock__/db.json --watch --port 3001",
-    "predeploy": "npm run build",
+    "predeploy": "npm i && npm run build",
     "deploy": "gh-pages -d build -r git@github.com:ffzz/ffzz.github.io.git -b main"
   },
   "eslintConfig": {
