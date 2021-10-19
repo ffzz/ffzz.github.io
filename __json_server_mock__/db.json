@@ -39,7 +39,7 @@
       "personId": 3,
       "organization": "团购组",
       "createdAt": 1604989757139,
-      "pin": false
+      "pin": true
     },
     {
       "id": 3,
@@ -95,12 +95,6 @@
       "projectId": 3
     },
     {
-      "id": 1634473901794,
-      "createdAt": 1634473901794,
-      "name": "FANGZHENG CHEN",
-      "projectId": 2
-    },
-    {
       "id": 1634473944049,
       "createdAt": 1634473944049,
       "name": "FANGZHENG CHEN",
@@ -119,7 +113,8 @@
       "createdAt": 1634473831144,
       "projectId": 3,
       "name": "测试一下",
-      "kanbanId": 1634473817362
+      "kanbanId": 1634473817362,
+      "typeId": 1
     },
     {
       "id": 1634473871374,
@@ -142,7 +137,8 @@
       "createdAt": 1634473939980,
       "projectId": 3,
       "name": "风格和",
-      "kanbanId": 1634473823658
+      "kanbanId": 1634473823658,
+      "processorId": 1
     },
     {
       "id": 1634473948857,
@@ -150,46 +146,6 @@
       "projectId": 3,
       "name": "风格和记得发",
       "kanbanId": 1634473944049
-    },
-    {
-      "fromId": 4,
-      "toId": 8,
-      "fromKanbanId": 1,
-      "toKanbanId": 1,
-      "type": "after",
-      "id": 1634473948858
-    },
-    {
-      "fromId": 4,
-      "toId": 8,
-      "fromKanbanId": 1,
-      "toKanbanId": 1,
-      "type": "after",
-      "id": 1634473948859
-    },
-    {
-      "fromId": 4,
-      "toId": 8,
-      "fromKanbanId": 1,
-      "toKanbanId": 1,
-      "type": "after",
-      "id": 1634473948860
-    },
-    {
-      "fromId": 4,
-      "toId": 8,
-      "fromKanbanId": 1,
-      "toKanbanId": 1,
-      "type": "after",
-      "id": 1634473948861
-    },
-    {
-      "fromId": 4,
-      "toId": 8,
-      "fromKanbanId": 1,
-      "toKanbanId": 1,
-      "type": "after",
-      "id": 1634473948862
     }
   ],
   "taskTypes": [

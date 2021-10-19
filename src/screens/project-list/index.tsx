@@ -19,7 +19,6 @@ export const ProjectListScreen = () => {
   const { isLoading, error, data: list } = useProjects(debouncedParam);
   // To fetch users data
   const { data: users } = useUsers();
-  
 
   return (
     <Container>
@@ -30,16 +29,13 @@ export const ProjectListScreen = () => {
         </NoPaddingButton>
       </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
-      {error ? <ErrorBox error={error} />  : ""}
-      <List
-        users={users || []}
-        dataSource={list || []}
-        loading={isLoading}
-      />
+      {error ? <ErrorBox error={error} /> : ""}
+      <List users={users || []} dataSource={list || []} loading={isLoading} />
     </Container>
   );
 };
 
 const Container = styled.div`
+  width: 100%;
   padding: 2rem 3.2rem;
 `;

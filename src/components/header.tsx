@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
-import { NoPaddingButton, Row } from "./lib";
-import { ReactComponent as Logo } from "../assets/software-logo.svg";
 import { useAuth } from "context/auth-context";
+import { Link } from "react-router-dom";
 import { resetRoute } from "utils";
+import { ReactComponent as Logo } from "../assets/software-logo.svg";
+import { NoPaddingButton, Row } from "./lib";
 import { ProjectPopover } from "./project-popover";
-import { Link, Route, Routes } from "react-router-dom";
-import { ProjectScreen } from "screens/project";
+import { UsersPopover } from "./users-popover";
 
 const PageHeader = () => {
   const { logout, user } = useAuth();
@@ -20,10 +20,9 @@ const PageHeader = () => {
         <Link to="projects">
           <ProjectPopover />
         </Link>
-        <Routes>
-          <Route element={<ProjectScreen />} />
-        </Routes>
-        <span>users</span>
+        <Link to="users">
+          <UsersPopover />
+        </Link>
       </HeaderLeft>
       <HeaderRight>
         <Dropdown
@@ -62,4 +61,3 @@ const HeaderLeft = styled(Row)``;
 const HeaderRight = styled.div``;
 
 export default PageHeader;
-

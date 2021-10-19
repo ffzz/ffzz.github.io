@@ -4,6 +4,7 @@ import { ProjectListScreen } from "screens/project-list";
 import { ProjectScreen } from "screens/project";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ProjectModal } from "screens/project-list/project-create-modal";
+import { UsersScreen } from "./screens/Users.tsx";
 
 const AuthenticatedApp = () => {
   return (
@@ -17,10 +18,8 @@ const AuthenticatedApp = () => {
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
             />
-            <Route
-              path={"/"}
-              element={<Navigate replace to={"/projects"} />}
-            />
+              <Route path="/users" element={<UsersScreen />} />
+            <Route path={"/"} element={<Navigate replace to={"/projects"} />} />
           </Routes>
         </Main>
         <ProjectModal />
