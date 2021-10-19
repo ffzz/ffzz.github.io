@@ -34,17 +34,9 @@
   "me": [],
   "projects": [
     {
-      "id": 1,
-      "name": "骑手管理",
-      "personId": 1,
-      "organization": "外卖组",
-      "createdAt": 1604989757139,
-      "pin": true
-    },
-    {
       "id": 2,
       "name": "团购 APP",
-      "personId": 2,
+      "personId": 3,
       "organization": "团购组",
       "createdAt": 1604989757139,
       "pin": true
@@ -63,7 +55,7 @@
       "personId": 3,
       "organization": "总部",
       "createdAt": 1604980000011,
-      "pin": false
+      "pin": true
     },
     {
       "id": 5,
@@ -72,6 +64,106 @@
       "organization": "外卖组",
       "createdAt": 1546900800000,
       "pin": true
+    }
+  ],
+  "kanbans": [
+    {
+      "id": 1,
+      "name": "待完成",
+      "projectId": 2
+    },
+    {
+      "id": 2,
+      "name": "开发中",
+      "projectId": 2
+    },
+    {
+      "id": 3,
+      "name": "已完成",
+      "projectId": 2
+    },
+    {
+      "id": 1634473817362,
+      "createdAt": 1634473817362,
+      "name": "待分配",
+      "projectId": 3
+    },
+    {
+      "id": 1634473823658,
+      "createdAt": 1634473823658,
+      "name": "待完成",
+      "projectId": 3
+    },
+    {
+      "id": 1634473944049,
+      "createdAt": 1634473944049,
+      "name": "FANGZHENG CHEN",
+      "projectId": 3
+    },
+    {
+      "type": "after",
+      "fromId": 1,
+      "toId": 2,
+      "id": 1634473944050
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1634473831144,
+      "createdAt": 1634473831144,
+      "projectId": 3,
+      "name": "测试一下",
+      "kanbanId": 1634473817362,
+      "typeId": 1
+    },
+    {
+      "id": 1634473871374,
+      "createdAt": 1634473871374,
+      "projectId": 2,
+      "name": "hello",
+      "kanbanId": 2,
+      "processorId": 1,
+      "typeId": 1
+    },
+    {
+      "id": 1634473897484,
+      "createdAt": 1634473897484,
+      "projectId": 2,
+      "name": "的",
+      "kanbanId": 2
+    },
+    {
+      "id": 1634473939980,
+      "createdAt": 1634473939980,
+      "projectId": 3,
+      "name": "风格和",
+      "kanbanId": 1634473823658,
+      "processorId": 1
+    },
+    {
+      "id": 1634473948857,
+      "createdAt": 1634473948857,
+      "projectId": 3,
+      "name": "风格和记得发",
+      "kanbanId": 1634473944049
+    }
+  ],
+  "taskTypes": [
+    {
+      "id": 1,
+      "name": "task"
+    },
+    {
+      "id": 2,
+      "name": "bug"
+    }
+  ],
+  "epics": [
+    {
+      "id": 1634567099661,
+      "createdAt": 1634567099661,
+      "name": "test",
+      "projectId": 2
     }
   ]
 }

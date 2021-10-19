@@ -2,22 +2,21 @@ import { useDebounce, useDocumentTitle } from "utils";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import styled from "@emotion/styled";
-import { Button, Typography } from "antd";
-import { useProjects } from "utils/project";
-import { useUsers } from "utils/users";
-import { useProjectsSearchParams } from "./util";
-import { Row } from "components/lib";
+import { useProjects } from "utils/use-project";
+import { useUsers } from "utils/use-users";
+import { useProjectModal, useProjectsSearchParams } from "./util";
+import { ErrorBox, NoPaddingButton, Row } from "components/lib";
 
-export const ProjectListScreen = (props: {
-  createProjectButton: React.ReactElement;
-}) => {
+export const ProjectListScreen = () => {
   useDocumentTitle("Project list", false);
 
   const [param, setParam] = useProjectsSearchParams();
   const debouncedParam = useDebounce(param, 200);
 
+  const { open } = useProjectModal();
+
   // To fetch list da
-  const { isLoading, error, data: list, refetch } = useProjects(debouncedParam);
+  const { isLoading, error, data: list } = useProjects(debouncedParam);
   // To fetch users data
   const { data: users } = useUsers();
 
@@ -25,25 +24,18 @@ export const ProjectListScreen = (props: {
     <Container>
       <Row between={true}>
         <h3>Projects List</h3>
-        {props.createProjectButton}
+        <NoPaddingButton onClick={open} type="link">
+          Create project
+        </NoPaddingButton>
       </Row>
       <SearchPanel users={users || []} param={param} setParam={setParam} />
-      {error ? (
-        <Typography.Text type="warning">{error.message}</Typography.Text>
-      ) : (
-        ""
-      )}
-      <List
-        createProjectButton={props.createProjectButton}
-        refresh={refetch}
-        users={users || []}
-        dataSource={list || []}
-        loading={isLoading}
-      />
+      {error ? <ErrorBox error={error} /> : ""}
+      <List users={users || []} dataSource={list || []} loading={isLoading} />
     </Container>
   );
 };
 
 const Container = styled.div`
+  width: 100%;
   padding: 2rem 3.2rem;
 `;

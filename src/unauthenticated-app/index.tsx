@@ -7,6 +7,7 @@ import logo from "../assets/logo.svg";
 import left from "../assets/left.svg";
 import right from "../assets/right.svg";
 import { useDocumentTitle } from "utils";
+import { ErrorBox } from "components/lib";
 
 const UnauthenticatedApp = () => {
 
@@ -23,7 +24,7 @@ const UnauthenticatedApp = () => {
           <Tittle>
               {isRegister ? "Log in Please" : "Register Please"}
           </Tittle>
-          { error ? <Typography.Text type='danger'>{error.message}</Typography.Text> : null}
+          { error ? <ErrorBox />: null}
         {isRegister ? <LoginScreen onError={setError} /> : <RegisterScreen onError={setError} />}
         <Divider />
         <a onClick={() => setIsRegister(!isRegister)}>
