@@ -2,7 +2,7 @@ import { useAuth } from "context/auth-context";
 import * as auth from "./auth-provider";
 import qs from "qs";
 import { useCallback } from "react";
-const apiUrl = process.env.REACT_APP_BASE_URL;
+const apiUrl = process.env.REACT_APP_API_URL;
 
 interface Config extends RequestInit {
   token?: string;

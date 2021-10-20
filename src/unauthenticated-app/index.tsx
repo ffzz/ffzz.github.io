@@ -1,37 +1,38 @@
-import { Button, Card, Divider, Typography } from "antd";
+import styled from "@emotion/styled";
+import { Button, Card, Divider } from "antd";
+import { ErrorBox } from "components/lib";
 import { useState } from "react";
+import { useDocumentTitle } from "utils";
+import left from "../assets/left.svg";
+import logo from "../assets/logo.svg";
+import right from "../assets/right.svg";
 import LoginScreen from "./login";
 import RegisterScreen from "./register";
-import styled from "@emotion/styled";
-import logo from "../assets/logo.svg";
-import left from "../assets/left.svg";
-import right from "../assets/right.svg";
-import { useDocumentTitle } from "utils";
-import { ErrorBox } from "components/lib";
 
 const UnauthenticatedApp = () => {
+  const [isRegister, setIsRegister] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  const [isRegister, setIsRegister] = useState(false);
-  const [ error, setError] = useState<Error | null>(null)
-
-  useDocumentTitle('Please login or register to continue')
+  useDocumentTitle("Please login or register to continue");
 
   return (
     <Container>
       <Header />
       <Background />
       <ShadowCard>
-          <Tittle>
-              {isRegister ? "Log in Please" : "Register Please"}
-          </Tittle>
-          { error ? <ErrorBox />: null}
-        {isRegister ? <LoginScreen onError={setError} /> : <RegisterScreen onError={setError} />}
+        <Tittle>{isRegister ? "Log in Please" : "Register Please"}</Tittle>
+        {error ? <ErrorBox /> : null}
+        {isRegister ? (
+          <LoginScreen onError={setError} />
+        ) : (
+          <RegisterScreen onError={setError} />
+        )}
         <Divider />
-        <a onClick={() => setIsRegister(!isRegister)}>
+        <Button type="link" onClick={() => setIsRegister(!isRegister)}>
           {isRegister
             ? "Don't have account? Register Here"
             : "Have a account already? Log in"}
-        </a>
+        </Button>
       </ShadowCard>
     </Container>
   );
@@ -45,9 +46,9 @@ const Header = styled.header`
 `;
 
 const Tittle = styled.h3`
-margin-bottom: 2.4rem;
-color: rgb(94, 108, 132)
-`
+  margin-bottom: 2.4rem;
+  color: rgb(94, 108, 132);
+`;
 
 const ShadowCard = styled(Card)`
   display: flex;

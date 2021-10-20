@@ -9,17 +9,17 @@ export interface LoginUser {
 
 const getToken = () => window.localStorage.getItem(localStorageKey);
 
-const handleUserResponse = (user: User) => {
+const handleUserResponse = ({ user }: { user: User }) => {
   window.localStorage.setItem(localStorageKey, user.token || "");
   console.log(user.token);
   return user;
 };
 
-const loginUrl = process.env.REACT_APP_BASE_URL;
+const loginUrl = process.env.REACT_APP_API_URL;
 
 const login = (data: LoginUser) => {
   return fetch(`${loginUrl}/login`, {
-    method: "post",
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
@@ -28,9 +28,9 @@ const login = (data: LoginUser) => {
     let data = null;
     if (response.ok) {
       data = await response.json();
-      return handleUserResponse(data.user);
+      return handleUserResponse(data);
     } else {
-      return Promise.reject(data);
+      return Promise.reject(await response.json());
     }
   });
 };
@@ -48,7 +48,7 @@ const register = (user: LoginUser) => {
       result = await response.json();
       return handleUserResponse(result);
     } else {
-      return Promise.reject(result);
+      return Promise.reject(await response.json());
     }
   });
 };
