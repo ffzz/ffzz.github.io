@@ -19,12 +19,12 @@ export const useProjectModal = () => {
     setEditingProjectId({ editingProjectId: id });
 
   const open = () => {
+    console.log("open click");
     setProjectCreate({ projectCreate: true });
   };
 
   const closeCreateProject = () => {
     setProjectCreate({ projectCreate: undefined });
-    //setEditingProjectId({editingProjectId: false})
   };
   const closeEditingProject = () => {
     setEditingProjectId({ editingProjectId: undefined });

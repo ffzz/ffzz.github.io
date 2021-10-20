@@ -10,33 +10,28 @@ export const ProjectPopover = () => {
   const pinnedProjects = projects?.filter((project) => project.pin === true);
   const { open } = useProjectModal();
 
- console.log('open', open)
   const content = (
     <Content>
-      {/* <Typography.Text type="secondary">Marked Projects</Typography.Text>
-      <Divider style={{ margin: "1rem" }} /> */}
       <List
         header={
           <Typography.Text type="secondary">Marked Projects</Typography.Text>
-        }
-        footer={
-          <>
-            <NoPaddingButton type="link" onClick={open}>
-              Create project
-            </NoPaddingButton>
-          </>
         }
       >
         {pinnedProjects?.map((project) => (
           <List.Item key={project.id}>
             <List.Item.Meta
               title={
-                <Link to={`/projects/${project.id}`} replace >{project.name}</Link>
+                <Link to={`/projects/${project.id}`} replace>
+                  {project.name}
+                </Link>
               }
             />
           </List.Item>
         ))}
       </List>
+      <NoPaddingButton type='ghost' onClick={open}>
+        Create project
+      </NoPaddingButton>
     </Content>
   );
   const loadingContent = isLoading ? <Spin size="small" /> : content;
