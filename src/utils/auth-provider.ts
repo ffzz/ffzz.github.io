@@ -19,7 +19,7 @@ const loginUrl = process.env.REACT_APP_BASE_URL;
 
 const login = (data: LoginUser) => {
   return fetch(`${loginUrl}/login`, {
-    method: "post",
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
@@ -37,7 +37,7 @@ const login = (data: LoginUser) => {
 
 const register = (user: LoginUser) => {
   return fetch(`${loginUrl}/register`, {
-    method: "post",
+    method: "POST",
     headers: {
       "content-type": "application/json",
     },
@@ -48,7 +48,7 @@ const register = (user: LoginUser) => {
       result = await response.json();
       return handleUserResponse(result);
     } else {
-      return Promise.reject(result);
+      return Promise.reject(await response.json());
     }
   });
 };

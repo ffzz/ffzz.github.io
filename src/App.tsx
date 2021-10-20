@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <ErrorBoundary fallbackRender={FullPageError}>
-        {/* {user ? <AuthenticatedApp /> : <UnauthenticatedApp />} */}
-        <AuthenticatedApp />
+        {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+        {/* <AuthenticatedApp /> */}
       </ErrorBoundary>
     </div>
   );

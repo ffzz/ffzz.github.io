@@ -10,14 +10,16 @@ export default function LoginScreen({
   onError: (error: Error) => void;
 }) {
   const { login } = useAuth();
-  const { fetchData, isLoading} = useAsyncHttp(undefined, {throwError: true})
+  const { fetchData, isLoading } = useAsyncHttp(undefined, {
+    throwError: true,
+  });
 
   const handleSubmit = async (values: {
     username: string;
     password: string;
   }) => {
     try {
-     await fetchData(login(values))
+      await fetchData(login(values));
     } catch (error: any) {
       onError(error);
     }
